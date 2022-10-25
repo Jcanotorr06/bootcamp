@@ -1,0 +1,321 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
+  // Further reading:
+  // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
+  // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+  url      = env("DATABASE_URL")
+}
+
+model Progress {
+  id       Int    @id @default(autoincrement())
+  progress String @unique
+
+  User_Course_Enrollment   User_Course_Enrollment[]
+  User_Module_Progress     User_Module_Progress[]
+  User_Lesson_Progress     User_Lesson_Progress[]
+  User_Quiz_Progress       User_Quiz_Progress[]
+  User_Project_Progress    User_Project_Progress[]
+  User_Assignment_Progress User_Assignment_Progress[]
+}
+
+model User_Roles {
+  id    Int    @id @default(autoincrement())
+  role  String @unique
+  Users User[]
+}
+
+model Achivements {
+  id         Int                @id @default(autoincrement())
+  achivement String             @unique
+  users      User_Achivements[]
+}
+
+model Course_Difficulties {
+  id         Int       @id @default(autoincrement())
+  difficulty String    @unique
+  Courses    Courses[]
+}
+
+model Courses_Tags {
+  id          Int           @id @default(autoincrement())
+  tag         String        @unique
+  Course_Tags Course_Tags[]
+}
+
+model Course_Categories {
+  id       Int       @id @default(autoincrement())
+  category String    @unique
+  Courses  Courses[]
+}
+
+model User_Types {
+  id    Int    @id @default(autoincrement())
+  type  String @unique
+  Users User[]
+}
+
+model User_Achivements {
+  achievement_id  Int
+  user_id         String
+  achivement_date DateTime @default(now())
+
+  achievement Achivements @relation(fields: [achievement_id], references: [id])
+  user        User        @relation(fields: [user_id], references: [id])
+
+  @@id([achievement_id, user_id])
+}
+
+model Courses {
+  id                Int      @id @default(autoincrement())
+  name              String   @unique
+  slug              String   @unique
+  short_description String?
+  long_description  String?
+  duration          BigInt
+  status            Int      @default(1)
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+  creator_user_id   String
+  category_id       Int
+  difficulty_id     Int
+
+  Creator_User           User                     @relation(fields: [creator_user_id], references: [id])
+  Category               Course_Categories        @relation(fields: [category_id], references: [id])
+  Difficulty             Course_Difficulties      @relation(fields: [difficulty_id], references: [id])
+  User_Course_Enrollment User_Course_Enrollment[]
+  Course_Tags            Course_Tags[]
+  Modules                Course_Modules[]
+}
+
+model User_Course_Enrollment {
+  course_id       Int
+  user_id         String
+  enrollment_date DateTime  @default(now())
+  graduation_date DateTime?
+  progress_id     Int
+  Course          Courses   @relation(fields: [course_id], references: [id])
+  User            User      @relation(fields: [user_id], references: [id])
+  Progress        Progress  @relation(fields: [progress_id], references: [id])
+
+  @@id([course_id, user_id])
+}
+
+model Course_Tags {
+  tag_id    Int
+  course_id Int
+  Course    Courses      @relation(fields: [course_id], references: [id])
+  Tag       Courses_Tags @relation(fields: [tag_id], references: [id])
+
+  @@id([course_id, tag_id])
+}
+
+model Course_Modules {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  status      Int      @default(1)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  course_id   Int
+
+  Course               Courses                @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  Module_Assignments   Assignments[]
+  Module_Projects      Projects[]
+  Module_Quizzes       Quizzes[]
+  Module_Lessons       Lessons[]
+  User_Module_Progress User_Module_Progress[]
+}
+
+model Assignments {
+  id                 Int      @id @default(autoincrement())
+  title              String
+  description        String
+  assignment_content String
+  status             Int      @default(1)
+  created_at         DateTime @default(now())
+  updated_at         DateTime @updatedAt
+  module_id          Int
+
+  User_Assignment_Progress User_Assignment_Progress[]
+  Module                   Course_Modules             @relation(fields: [module_id], references: [id])
+}
+
+model Projects {
+  id              Int      @id @default(autoincrement())
+  title           String
+  description     String
+  project_content String
+  status          Int      @default(1)
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  module_id       Int
+
+  User_Project_Progress User_Project_Progress[]
+  Module                Course_Modules          @relation(fields: [module_id], references: [id])
+}
+
+model Quizzes {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String
+  quizz_content String
+  status        Int      @default(1)
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  module_id     Int
+
+  User_Quiz_Progress User_Quiz_Progress[]
+  Module             Course_Modules       @relation(fields: [module_id], references: [id])
+}
+
+model Lessons {
+  id             Int      @id @default(autoincrement())
+  title          String
+  description    String
+  lesson_content String
+  status         Int      @default(1)
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  module_id      Int
+
+  User_Lesson_Progress User_Lesson_Progress[]
+  Module               Course_Modules         @relation(fields: [module_id], references: [id])
+}
+
+model User_Module_Progress {
+  user_id         String
+  module_id       Int
+  start_date      DateTime       @default(now())
+  completion_date DateTime?
+  progress_id     Int
+  User            User           @relation(fields: [user_id], references: [id])
+  Module          Course_Modules @relation(fields: [module_id], references: [id])
+  Progress        Progress       @relation(fields: [progress_id], references: [id])
+
+  @@id([module_id, user_id])
+}
+
+model User_Lesson_Progress {
+  user_id         String
+  lesson_id       Int
+  start_date      DateTime  @default(now())
+  completion_date DateTime?
+  progress_id     Int
+  User            User      @relation(fields: [user_id], references: [id])
+  Lesson          Lessons   @relation(fields: [lesson_id], references: [id])
+  Progress        Progress  @relation(fields: [progress_id], references: [id])
+
+  @@id([lesson_id, user_id])
+}
+
+model User_Quiz_Progress {
+  user_id         String
+  quizz_id        Int
+  start_date      DateTime  @default(now())
+  completion_date DateTime?
+  grade           Int
+  progress_id     Int
+  User            User      @relation(fields: [user_id], references: [id])
+  Quiz            Quizzes   @relation(fields: [quizz_id], references: [id])
+  Progress        Progress  @relation(fields: [progress_id], references: [id])
+
+  @@id([quizz_id, user_id])
+}
+
+model User_Project_Progress {
+  user_id         String
+  project_id      Int
+  start_date      DateTime  @default(now())
+  completion_date DateTime?
+  grade           Int
+  progress_id     Int
+  User            User      @relation(fields: [user_id], references: [id])
+  Project         Projects  @relation(fields: [project_id], references: [id])
+  Progress        Progress  @relation(fields: [progress_id], references: [id])
+
+  @@id([project_id, user_id])
+}
+
+model User_Assignment_Progress {
+  user_id         String
+  assignment_id   Int
+  start_date      DateTime    @default(now())
+  completion_date DateTime?
+  grade           Int
+  progress_id     Int
+  User            User        @relation(fields: [user_id], references: [id])
+  Assignment      Assignments @relation(fields: [assignment_id], references: [id])
+  Progress        Progress    @relation(fields: [progress_id], references: [id])
+
+  @@id([assignment_id, user_id])
+}
+
+// Necessary for Next auth
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  avatar        String?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+  status        Int       @default(1)
+  type_id       Int
+  role_id       Int
+
+  accounts                 Account[]
+  sessions                 Session[]
+  Achivements              User_Achivements[]
+  Created_Courses          Courses[]
+  User_Course_Enrollment   User_Course_Enrollment[]
+  User_Module_Progress     User_Module_Progress[]
+  User_Lesson_Progress     User_Lesson_Progress[]
+  User_Project_Progress    User_Project_Progress[]
+  User_Assignment_Progress User_Assignment_Progress[]
+  User_Quiz_Progress       User_Quiz_Progress[]
+  User_Types               User_Types                 @relation(fields: [type_id], references: [id])
+  User_Roles               User_Roles                 @relation(fields: [role_id], references: [id])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
