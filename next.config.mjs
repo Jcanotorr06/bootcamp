@@ -1,4 +1,6 @@
 // @ts-check
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 import { env } from "./src/env/server.mjs";
 
 /**
@@ -21,4 +23,7 @@ export default defineNextConfig({
     locales: ["en"],
     defaultLocale: "en",
   },
+  sassOptions: {
+    includePaths: [path.join(dirname(fileURLToPath(import.meta.url)), 'styles')]
+  }
 });
