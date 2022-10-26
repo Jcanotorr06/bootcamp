@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "./buttons.scss";
+
+*, html {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+    h1 {
+        @apply text-m-h1 lg:text-h1 leading-h1 tracking-sm
+    }
+    h2 {
+        @apply text-m-h2 lg:text-h2 leading-h2 tracking-sm
+    }
+    h3 {
+        @apply text-m-h3 lg:text-h3 leading-h3 tracking-sm
+    }
+    h4 {
+        @apply text-m-h4 lg:text-h4 leading-h4 tracking-sm
+    }
+    h5 {
+        @apply text-m-h5 lg:text-h5 leading-h5 tracking-sm
+    }
+    h6 {
+        @apply text-m-h6 lg:text-h6 leading-h6 tracking-sm
+    }
+}
+
+

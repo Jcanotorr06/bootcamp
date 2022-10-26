@@ -1,0 +1,155 @@
+@layer components {
+    .btn {
+        display: inline-flex;
+        flex-shrink: 0;
+        cursor: pointer;
+        user-select: none;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 6px;
+        transition-property: color,background-color,border-color,text-decoration-color, outline-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-text-decoration-color,-webkit-backdrop-filter;
+        transition-duration: 0.2s;
+        transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+        font-weight: theme('fontWeight.medium');
+        outline: 4px solid transparent;
+
+        &:disabled {
+            cursor:unset;
+            pointer-events: none;
+        }
+    }
+    .btn-lg {
+        font-size: theme('fontSize.p-md');
+        line-height: theme('lineHeight.p-md');
+        padding: 12px 20px;
+        gap: theme('spacing.x-sm');
+    }
+    .btn-md {
+        font-size: theme('fontSize.p-sm');
+        line-height: theme('lineHeight.p-sm');
+        padding: 10px 16px;
+        gap: theme('spacing.x-sm');
+    }
+    .btn-sm {
+        font-size: theme('fontSize.p-xs');
+        line-height: theme('lineHeight.p-xs');
+        padding: 6px 12px;
+        gap: theme('spacing.xx-sm');
+    }
+    .btn-primary {
+        background-color: theme('colors.primary.500');
+        color: theme('colors.base.white');
+        &:hover {
+            background-color: theme('colors.primary.600');
+        }
+        &:focus {
+            outline-color: theme('colors.primary.200');
+            background-color: theme('colors.primary.500');
+            color: theme('colors.base.white');
+        }
+        &:active {
+            background-color: theme('colors.primary.600');
+            color: theme('colors.primary.200');
+        }
+        &:disabled {
+            background-color: theme('colors.primary.300');
+        }
+    }
+    .btn-secondary {
+        background-color: theme('colors.secondary.500');
+        color: theme('colors.base.white');
+        &:hover {
+            background-color: theme('colors.secondary.600');
+        }
+        &:focus {
+            outline-color: theme('colors.secondary.200');
+            background-color: theme('colors.secondary.500');
+            color: theme('colors.base.white');
+        }
+        &:active {
+            background-color: theme('colors.secondary.600');
+            color: theme('colors.secondary.200');
+        }
+        &:disabled {
+            background-color: theme('colors.secondary.300');
+        }
+    }
+    .btn-neutral {
+        background-color: theme('colors.neutral.500');
+        color: theme('colors.base.white');
+        &:hover {
+            background-color: theme('colors.neutral.600');
+        }
+        &:focus {
+            outline-color: theme('colors.neutral.200');
+            background-color: theme('colors.neutral.500');
+            color: theme('colors.base.white');
+        }
+        &:active {
+            background-color: theme('colors.neutral.600');
+            color: theme('colors.neutral.200');
+        }
+        &:disabled {
+            background-color: theme('colors.neutral.300');
+        }
+    }
+    .btn-success {
+        background-color: theme('colors.success.500');
+        color: theme('colors.base.white');
+        &:hover {
+            background-color: theme('colors.success.600');
+        }
+        &:focus {
+            outline-color: theme('colors.success.200');
+            background-color: theme('colors.success.500');
+            color: theme('colors.base.white');
+        }
+        &:active {
+            background-color: theme('colors.success.600');
+            color: theme('colors.success.200');
+        }
+        &:disabled {
+            background-color: theme('colors.success.300');
+        }
+    }
+    .btn-warning {
+        background-color: theme('colors.warning.500');
+        color: theme('colors.base.white');
+        &:hover {
+            background-color: theme('colors.warning.600');
+        }
+        &:focus {
+            outline-color: theme('colors.warning.200');
+            background-color: theme('colors.warning.500');
+            color: theme('colors.base.white');
+        }
+        &:active {
+            background-color: theme('colors.warning.600');
+            color: theme('colors.warning.200');
+        }
+        &:disabled {
+            background-color: theme('colors.warning.300');
+        }
+    }
+    .btn-error {
+        background-color: theme('colors.error.500');
+        color: theme('colors.base.white');
+        &:hover {
+            background-color: theme('colors.error.600');
+        }
+        &:focus {
+            outline-color: theme('colors.error.200');
+            background-color: theme('colors.error.500');
+            color: theme('colors.base.white');
+        }
+        &:active {
+            background-color: theme('colors.error.600');
+            color: theme('colors.error.200');
+        }
+        &:disabled {
+            background-color: theme('colors.error.300');
+        }
+    }
+}
