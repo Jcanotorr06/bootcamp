@@ -14,142 +14,92 @@
         transition-timing-function: cubic-bezier(0.4,0,0.2,1);
         font-weight: theme('fontWeight.medium');
         outline: 4px solid transparent;
+        border: 1px solid transparent;
 
         &:disabled {
             cursor:unset;
             pointer-events: none;
         }
-    }
-    .btn-lg {
-        font-size: theme('fontSize.p-md');
-        line-height: theme('lineHeight.p-md');
-        padding: 12px 20px;
-        gap: theme('spacing.x-sm');
-    }
-    .btn-md {
-        font-size: theme('fontSize.p-sm');
-        line-height: theme('lineHeight.p-sm');
-        padding: 10px 16px;
-        gap: theme('spacing.x-sm');
-    }
-    .btn-sm {
-        font-size: theme('fontSize.p-xs');
-        line-height: theme('lineHeight.p-xs');
-        padding: 6px 12px;
-        gap: theme('spacing.xx-sm');
-    }
-    .btn-primary {
-        background-color: theme('colors.primary.500');
-        color: theme('colors.base.white');
-        &:hover {
-            background-color: theme('colors.primary.600');
+        &.btn-lg {
+            @apply text-p-md leading-p-md px-big py-sm gap-x-sm;
         }
-        &:focus {
-            outline-color: theme('colors.primary.200');
-            background-color: theme('colors.primary.500');
-            color: theme('colors.base.white');
+        &.btn-md {
+            @apply text-p-sm leading-p-sm px-md py-2.5 gap-x-sm;
         }
-        &:active {
-            background-color: theme('colors.primary.600');
-            color: theme('colors.primary.200');
+        &.btn-sm {
+            @apply text-p-xs leading-p-xs px-3 py-1.5 gap-xx-sm;
         }
-        &:disabled {
-            background-color: theme('colors.primary.300');
+        &.btn-primary {
+            @apply bg-primary-500 text-base-white hover:bg-primary-600 focus:outline-primary-200 active:bg-primary-600 active:text-primary-200 disabled:bg-primary-300;
+            &.btn-accent {
+                @apply bg-primary-50 text-primary-500 hover:bg-primary-100 focus:outline-primary-200 active:bg-primary-100 active:text-primary-200 disabled:bg-primary-50 disabled:text-primary-300;
+            }
+            &.btn-outline {
+                @apply bg-base-white text-primary-500 border-primary-500 hover:text-primary-600 hover:border-primary-600 active:text-primary-300 active:border-primary-500 focus:border-primary-300 focus:outline-primary-300 focus:text-primary-500 disabled:text-primary-300 disabled:border-primary-300
+            }
+            &.btn-link {
+                @apply bg-base-white text-primary-500 hover:text-primary-600 active:text-primary-400  focus:text-primary-600  disabled:text-primary-300;
+            }
         }
-    }
-    .btn-secondary {
-        background-color: theme('colors.secondary.500');
-        color: theme('colors.base.white');
-        &:hover {
-            background-color: theme('colors.secondary.600');
+        &.btn-secondary {
+            @apply bg-secondary-500 text-base-white hover:bg-secondary-600 focus:outline-secondary-200 active:bg-secondary-600 active:text-secondary-200 disabled:bg-secondary-300;
+            &.btn-accent {
+                @apply bg-secondary-50 text-secondary-500 hover:bg-secondary-100 focus:outline-secondary-200 active:bg-secondary-100 active:text-secondary-200 disabled:bg-secondary-50 disabled:text-secondary-300;
+            }
+            &.btn-outline {
+                @apply bg-base-white text-secondary-500 border-secondary-500 hover:text-secondary-600 hover:border-secondary-600 active:text-secondary-300 active:border-secondary-500 focus:border-secondary-300 focus:outline-secondary-300 focus:text-secondary-500 disabled:text-secondary-300 disabled:border-secondary-300
+            }
+            &.btn-link {
+                @apply bg-base-white text-secondary-500 hover:text-secondary-600 active:text-secondary-400  focus:text-secondary-600  disabled:text-secondary-300;
+            }
         }
-        &:focus {
-            outline-color: theme('colors.secondary.200');
-            background-color: theme('colors.secondary.500');
-            color: theme('colors.base.white');
+        &.btn-neutral {
+            @apply bg-neutral-500 text-base-white hover:bg-neutral-600 focus:outline-neutral-200 active:bg-neutral-600 active:text-neutral-200 disabled:bg-neutral-300;
+            &.btn-accent {
+                @apply bg-neutral-50 text-neutral-500 hover:bg-neutral-100 focus:outline-neutral-200 active:bg-neutral-100 active:text-neutral-200 disabled:bg-neutral-50 disabled:text-neutral-300;
+            }
+            &.btn-outline {
+                @apply bg-base-white text-neutral-500 border-neutral-500 hover:text-neutral-600 hover:border-neutral-600 active:text-neutral-300 active:border-neutral-500 focus:border-neutral-300 focus:outline-neutral-300 focus:text-neutral-500 disabled:text-neutral-300 disabled:border-neutral-300
+            }
+            &.btn-link {
+                @apply bg-base-white text-neutral-500 hover:text-neutral-600 active:text-neutral-400  focus:text-neutral-600  disabled:text-neutral-300;
+            }
         }
-        &:active {
-            background-color: theme('colors.secondary.600');
-            color: theme('colors.secondary.200');
+        &.btn-success {
+            @apply bg-success-500 text-base-white hover:bg-success-600 focus:outline-success-200 active:bg-success-600 active:text-success-200 disabled:bg-success-300;
+            &.btn-accent {
+                @apply bg-success-50 text-success-500 hover:bg-success-100 focus:outline-success-200 active:bg-success-100 active:text-success-200 disabled:bg-success-50 disabled:text-success-300;
+            }
+            &.btn-outline {
+                @apply bg-base-white text-success-500 border-success-500 hover:text-success-600 hover:border-success-600 active:text-success-300 active:border-success-500 focus:border-success-300 focus:outline-success-300 focus:text-success-500 disabled:text-success-300 disabled:border-success-300
+            }
+            &.btn-link {
+                @apply bg-base-white text-success-500 hover:text-success-600 active:text-success-400  focus:text-success-600  disabled:text-success-300;
+            }
         }
-        &:disabled {
-            background-color: theme('colors.secondary.300');
+        &.btn-warning {
+            @apply bg-warning-500 text-base-white hover:bg-warning-600 focus:outline-warning-200 active:bg-warning-600 active:text-warning-200 disabled:bg-warning-300;
+            &.btn-accent {
+                @apply bg-warning-50 text-warning-500 hover:bg-warning-100 focus:outline-warning-200 active:bg-warning-100 active:text-warning-200 disabled:bg-warning-50 disabled:text-warning-300;
+            }
+            &.btn-outline {
+                @apply bg-base-white text-warning-500 border-warning-500 hover:text-warning-600 hover:border-warning-600 active:text-warning-300 active:border-warning-500 focus:border-warning-300 focus:outline-warning-300 focus:text-warning-500 disabled:text-warning-300 disabled:border-warning-300
+            }
+            &.btn-link {
+                @apply bg-base-white text-warning-500 hover:text-warning-600 active:text-warning-400  focus:text-warning-600  disabled:text-warning-300;
+            }
         }
-    }
-    .btn-neutral {
-        background-color: theme('colors.neutral.500');
-        color: theme('colors.base.white');
-        &:hover {
-            background-color: theme('colors.neutral.600');
-        }
-        &:focus {
-            outline-color: theme('colors.neutral.200');
-            background-color: theme('colors.neutral.500');
-            color: theme('colors.base.white');
-        }
-        &:active {
-            background-color: theme('colors.neutral.600');
-            color: theme('colors.neutral.200');
-        }
-        &:disabled {
-            background-color: theme('colors.neutral.300');
-        }
-    }
-    .btn-success {
-        background-color: theme('colors.success.500');
-        color: theme('colors.base.white');
-        &:hover {
-            background-color: theme('colors.success.600');
-        }
-        &:focus {
-            outline-color: theme('colors.success.200');
-            background-color: theme('colors.success.500');
-            color: theme('colors.base.white');
-        }
-        &:active {
-            background-color: theme('colors.success.600');
-            color: theme('colors.success.200');
-        }
-        &:disabled {
-            background-color: theme('colors.success.300');
-        }
-    }
-    .btn-warning {
-        background-color: theme('colors.warning.500');
-        color: theme('colors.base.white');
-        &:hover {
-            background-color: theme('colors.warning.600');
-        }
-        &:focus {
-            outline-color: theme('colors.warning.200');
-            background-color: theme('colors.warning.500');
-            color: theme('colors.base.white');
-        }
-        &:active {
-            background-color: theme('colors.warning.600');
-            color: theme('colors.warning.200');
-        }
-        &:disabled {
-            background-color: theme('colors.warning.300');
-        }
-    }
-    .btn-error {
-        background-color: theme('colors.error.500');
-        color: theme('colors.base.white');
-        &:hover {
-            background-color: theme('colors.error.600');
-        }
-        &:focus {
-            outline-color: theme('colors.error.200');
-            background-color: theme('colors.error.500');
-            color: theme('colors.base.white');
-        }
-        &:active {
-            background-color: theme('colors.error.600');
-            color: theme('colors.error.200');
-        }
-        &:disabled {
-            background-color: theme('colors.error.300');
+        &.btn-error {
+            @apply bg-error-500 text-base-white hover:bg-error-600 focus:outline-error-200 active:bg-error-600 active:text-error-200 disabled:bg-error-300;
+            &.btn-accent {
+                @apply bg-error-50 text-error-500 hover:bg-error-100 focus:outline-error-200 active:bg-error-100 active:text-error-200 disabled:bg-error-50 disabled:text-error-300;
+            }
+            &.btn-outline {
+                @apply bg-base-white text-error-500 border-error-500 hover:text-error-600 hover:border-error-600 active:text-error-300 active:border-error-500 focus:border-error-300 focus:outline-error-300 focus:text-error-500 disabled:text-error-300 disabled:border-error-300
+            }
+            &.btn-link {
+                @apply bg-base-white text-error-500 hover:text-error-600 active:text-error-400  focus:text-error-600  disabled:text-error-300;
+            }
         }
     }
 }
