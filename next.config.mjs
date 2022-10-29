@@ -25,5 +25,12 @@ export default defineNextConfig({
   },
   sassOptions: {
     includePaths: [path.join(dirname(fileURLToPath(import.meta.url)), 'styles')]
+  },
+  webpack(config){
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"]
+    })
+    return config
   }
 });
