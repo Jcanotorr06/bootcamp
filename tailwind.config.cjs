@@ -1,13 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}"
+  ],
   theme: {
     extend: {
       screens: {
-        sm: '480px',
-        md: '768px',
-        lg: '976px',
-        xl: '1440px',
+        medium: "600px",
+        large: "1236px"
       },
       colors: {
         neutral: {
@@ -89,10 +89,10 @@ module.exports = {
         
       },
       fontFamily: {
-        serif: ['Inter', 'sans-serif']
+        inter: 'Inter,  sans-serif'
       },
       fontSize: {
-        "d-lg": "52px",
+        "d-lg": ["52px", {lineHeight: "56px", letterSpacing: "-0.02em"}],
         "d-sm": "44px",
         "h1": "40px",
         "h2": "36px",
@@ -106,11 +106,11 @@ module.exports = {
         "m-h4": "24px",
         "m-h5": "20px",
         "m-h6": "18px",
-        "p-lg": "18px",
+        "p-lg": ["18px", {lineHeight: "28px"}],
         "p-md": "16px",
         "p-sm": "14px",
         "p-xs": "12px",
-        "ov-lg": "14px",
+        "ov-lg": ['14px', {fontWeight: "600", lineHeight: "20px"}],
         "ov-sm": "12px",
       },
       lineHeight: {
@@ -138,28 +138,28 @@ module.exports = {
       },
       spacing: {
         "xx-sm": "4px",
-        "x-sm": "8px",
+        "xsm": "8px",
         "sm": "12px",
         "md": "16px",
-        "big": "20x",
-        "x-big": "24px",
+        "big": "20px",
+        "xbig": "24px",
         "xx-big": "28px",
         "xxx-big": "32px",
         "lg": "40px",
-        "x-lg": "48px",
+        "xlg": "48px",
         "xx-lg": "64px",
         "xxx-lg": "80px",
         "huge": "96px",
-        "x-huge": "128px",
+        "xhuge": "128px",
         "xx-huge":"160px",
         "xxx-huge":"192px",
       },
       boxShadow: {
-        "x-small": "0px 1px 2px rgba(16, 24, 40, 0.05)",
+        "xsmall": "0px 1px 2px rgba(16, 24, 40, 0.05)",
         "small": "0px 1px 2px -1px rgba(16, 24, 40, 0.1), 0px 1px 3px rgba(16, 24, 40, 0.1)",
         "medium": "0px 2px 4px -2px rgba(16, 24, 40, 0.1), 0px 4px 6px -1px rgba(16, 24, 40, 0.1)",
         "large": "0px 10px 15px -3px rgba(16, 24, 40, 0.1), 0px 4px 6px -4px rgba(16, 24, 40, 0.1)",
-        "x-large": "0px 20px 25px -5px rgba(16, 24, 40, 0.1), 0px 8px 10px -6px rgba(16, 24, 40, 0.1)",
+        "xlarge": "0px 20px 25px -5px rgba(16, 24, 40, 0.1), 0px 8px 10px -6px rgba(16, 24, 40, 0.1)",
         "xx-large": "0px 25px 50px -12px rgba(16, 24, 40, 0.25);",
       }
     },
