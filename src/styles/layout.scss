@@ -1,0 +1,8 @@
+@layer components{
+    .section {
+        @apply flex grow-0 self-stretch lg:px-28;
+    }
+    .hero {
+        @apply flex grow-0 items-center justify-center self-stretch lg:gap-md lg:py-xx-lg;
+    }
+}
